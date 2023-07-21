@@ -9,26 +9,33 @@ public class MoonComputerTests {
     }
 
     public void testMath() {
-
         Scanner scanner = new Scanner(System.in);
-        int firstInt = scanner.nextInt();
-        int secondInt = scanner.nextInt();
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
 
-        if (firstInt != 0 & secondInt != 0) {
+        int sum = a + b;
+        int sub = a - b;
+        int multiply = a * b;
+        int divide = a / b;
 
-            int sumOfInts = firstInt + secondInt;
-            int differentOfInts = firstInt - secondInt;
-            int multiplicationOfInts = firstInt * secondInt;
-            int degreeOfInts = (int) (firstInt / secondInt);
-            System.out.println(sumOfInts + " " + differentOfInts + " " + multiplicationOfInts + " " + degreeOfInts);
-            scanner.close();
-        }
+        System.out.println(sum + " " + sub + " " + multiply + " " + divide);
 
+        scanner.close();
     }
 
+    public void testLogicalOperators() {
 
-    //Test output on 24, 4 standard input
+        Scanner scanner = new Scanner(System.in);
+        boolean firstValueBoolean = scanner.nextBoolean();
+        boolean secondValueBoolean = scanner.nextBoolean();
+        boolean thirdValueBoolean = scanner.nextBoolean();
+        System.out.println(firstValueBoolean && secondValueBoolean && thirdValueBoolean);
+        System.out.println(firstValueBoolean || secondValueBoolean || thirdValueBoolean);
+        scanner.close();
+    }
+
+    //Test output on true, true, false standard input
     public static void main(String[] args) {
-        new MoonComputerTests().testMath();
+        new MoonComputerTests().testLogicalOperators();
     }
 }
