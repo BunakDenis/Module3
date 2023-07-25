@@ -1,3 +1,5 @@
+package global.goit.edu.Module3;
+
 import java.util.*;
 
 public class SaveStarShip {
@@ -55,18 +57,68 @@ public class SaveStarShip {
     }
 
     public int calculateNeededFuel(int distance) {
+        if (distance <= 20) {
+            return 1000;
+        }
 
-        int needFuel = 1000;
+        int extraDistance = distance - 1000;
+        return 1000 + extraDistance * 5;
+    }
 
-        if (distance > 20) {
+    public void calculateMaxPower() {
+        Scanner scanner = new Scanner(System.in);
+        int speed1 = scanner.nextInt();
+        int speed2 = scanner.nextInt();
+        int speed3 = scanner.nextInt();
 
-            return needFuel + ((distance - 20) * 5);
+        int max = speed1;
+        if (speed2 > max) {
+            max = speed2;
+        }
+        if (speed3 > max) {
+            max = speed3;
+        }
 
+        float coeff = 0.7f;
+        if (max < 10) {
+            coeff = 0.7f;
+        } else if (max > 10 && max < 100) {
+            coeff = 1.2f;
         } else {
+            coeff = 2.1f;
+        }
 
-            return needFuel;
+        float maxPower = (float) max * coeff;
+        System.out.println(maxPower);
+        scanner.close();
+    }
+
+    public String getMyPrizes(int ticket) {
+        String result = "";
+        if (ticket % 10 == 0) {
+            result += "crystall";
+        }
+
+        if (ticket % 10 == 7) {
+            result += " chip";
+        }
+
+        if (ticket > 200) {
+            result += " coin";
+        }
+
+        return result.strip();
+    }
+
+    public boolean isHangarOk(int side1, int side2, int price) {
+
+        if (side1 * side2 >= 1500 & Math.max(side1, side2) <= (Math.min(side1, side2) * 2) & price / (side1 * side2) <= 1000) {
+
+            return true;
 
         }
+
+        return false;
 
     }
 
@@ -90,6 +142,16 @@ public class SaveStarShip {
         System.out.println(ship.roundSpeed(55));
 
         //Should be 1005
-        System.out.println(ship.calculateNeededFuel(21));
+        System.out.println(ship.calculateNeededFuel(1001));
+
+        //Test stdin data - 1 3 5.
+        //Console ouput should be 3.5
+        ship.calculateMaxPower();
+
+        //Should be "crystall coin"
+        System.out.println(ship.getMyPrizes(250));
+
+        //Should be true
+        System.out.println(ship.isHangarOk(100, 75, 1000000));
     }
 }
